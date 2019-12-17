@@ -47,9 +47,6 @@ namespace dotnet_todo
                             if (int.TryParse(currentInput, out currentToDo))
                             {
                                 ValidateInput(myToDos, currentInput, ref currentToDo);
-                                Console.WriteLine($"currentInput is {currentInput}");
-                                Console.WriteLine(currentToDo);
-
                                 myToDos.CompleteToDo(currentToDo - 1);
                                 Console.WriteLine($"\nTask #{currentToDo} marked as 'Complete'.\n");
                             }

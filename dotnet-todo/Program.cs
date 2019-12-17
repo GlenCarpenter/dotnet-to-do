@@ -6,11 +6,17 @@ namespace dotnet_todo
     {
         static void Main(string[] args)
         {
+            // initializing todo list
             ToDoList myToDos = new ToDoList();
             int selection = 0;
 
+            // vars for current selection
+            String newTask;
+            int currentToDo;
+
             Console.WriteLine("Welcome to the to-do list!\n\n");
 
+            // main program
             do
             {
                 Console.WriteLine("\nWhat would you like to do?\n");
@@ -26,41 +32,36 @@ namespace dotnet_todo
                 switch (selection)
                 {
                     case 1:
-                        String newTask;
                         Console.WriteLine("\nEnter the new to-do item: ");
                         newTask = Console.ReadLine();
                         myToDos.AddToDo(newTask);
                         Console.WriteLine("\nNew item added.\n");
                         break;
                     case 2:
-                        int toDoToComplete;
                         myToDos.PrintToDos();
                         Console.WriteLine("\nEnter the number of the task you would like to mark as completed:");
-                        toDoToComplete = Convert.ToInt32(Console.ReadLine()) - 1;
-                        myToDos.CompleteToDo(toDoToComplete);
-                        Console.WriteLine($"\nTask #{toDoToComplete + 1} marked as 'Complete'.\n");
+                        currentToDo = Convert.ToInt32(Console.ReadLine()) - 1;
+                        myToDos.CompleteToDo(currentToDo);
+                        Console.WriteLine($"\nTask #{currentToDo + 1} marked as 'Complete'.\n");
                         break;
                     case 3:
-                        String newTaskForUpdate;
-                        int toDoToUpdate;
                         myToDos.PrintToDos();
                         Console.WriteLine("\nEnter the number of the task you would like to update:");
-                        toDoToUpdate = Convert.ToInt32(Console.ReadLine()) - 1;
+                        currentToDo = Convert.ToInt32(Console.ReadLine()) - 1;
                         Console.WriteLine("Enter the new task:");
-                        newTaskForUpdate = Console.ReadLine();
-                        myToDos.UpdateTask(newTaskForUpdate, toDoToUpdate);
-                        Console.WriteLine($"\nTask #{toDoToUpdate + 1} updated.\n");
+                        newTask = Console.ReadLine();
+                        myToDos.UpdateTask(newTask, currentToDo);
+                        Console.WriteLine($"\nTask #{currentToDo + 1} updated.\n");
                         break;
                     case 4:
                         myToDos.PrintToDos();
                         break;
                     case 5:
-                        int toDoToDelete;
                         myToDos.PrintToDos();
                         Console.WriteLine("\nEnter the number of the task you would like to delete:");
-                        toDoToDelete = Convert.ToInt32(Console.ReadLine()) - 1;
-                        myToDos.RemoveToDo(toDoToDelete);
-                        Console.WriteLine($"\nTask #{toDoToDelete + 1} deleted.\n");
+                        currentToDo = Convert.ToInt32(Console.ReadLine()) - 1;
+                        myToDos.RemoveToDo(currentToDo);
+                        Console.WriteLine($"\nTask #{currentToDo + 1} deleted.\n");
                         break;
                     case 6:
                         Console.WriteLine("\nGood bye!\n");

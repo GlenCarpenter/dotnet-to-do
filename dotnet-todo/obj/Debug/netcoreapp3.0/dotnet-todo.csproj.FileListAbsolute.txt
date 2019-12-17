@@ -1,0 +1,11 @@
+C:\sandbox\dotnet-todo\bin\Debug\netcoreapp3.0\dotnet-todo.exe
+C:\sandbox\dotnet-todo\bin\Debug\netcoreapp3.0\dotnet-todo.deps.json
+C:\sandbox\dotnet-todo\bin\Debug\netcoreapp3.0\dotnet-todo.runtimeconfig.json
+C:\sandbox\dotnet-todo\bin\Debug\netcoreapp3.0\dotnet-todo.runtimeconfig.dev.json
+C:\sandbox\dotnet-todo\bin\Debug\netcoreapp3.0\dotnet-todo.dll
+C:\sandbox\dotnet-todo\bin\Debug\netcoreapp3.0\dotnet-todo.pdb
+C:\sandbox\dotnet-todo\obj\Debug\netcoreapp3.0\dotnet-todo.csprojAssemblyReference.cache
+C:\sandbox\dotnet-todo\obj\Debug\netcoreapp3.0\dotnet-todo.AssemblyInfoInputs.cache
+C:\sandbox\dotnet-todo\obj\Debug\netcoreapp3.0\dotnet-todo.AssemblyInfo.cs
+C:\sandbox\dotnet-todo\obj\Debug\netcoreapp3.0\dotnet-todo.dll
+C:\sandbox\dotnet-todo\obj\Debug\netcoreapp3.0\dotnet-todo.pdb

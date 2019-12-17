@@ -13,6 +13,7 @@ namespace dotnet_todo
 
             // vars for current selection
             String newTask;
+            String currentInput;
             int currentToDo;
 
             Console.WriteLine("Welcome to the to-do list!\n\n");
@@ -42,18 +43,56 @@ namespace dotnet_todo
                         case 2:
                             myToDos.PrintToDos();
                             Console.WriteLine("\nEnter the number of the task you would like to mark as completed:");
-                            currentToDo = Convert.ToInt32(Console.ReadLine()) - 1;
-                            myToDos.CompleteToDo(currentToDo);
-                            Console.WriteLine($"\nTask #{currentToDo + 1} marked as 'Complete'.\n");
+                            currentInput = Console.ReadLine();
+                            if (int.TryParse(currentInput, out currentToDo))
+                            {
+                                while (CheckRange(myToDos, currentToDo))
+                                {
+                                    currentInput = Console.ReadLine();
+                                    if (int.TryParse(currentInput, out currentToDo))
+                                    {
+                                        CheckRange(myToDos, currentToDo);
+                                    }
+                                    else
+                                    {
+                                        Console.WriteLine("\nInvalid selection! Please enter a number.\n");
+                                    }
+                                }
+                                myToDos.CompleteToDo(currentToDo - 1);
+                                Console.WriteLine($"\nTask #{currentToDo} marked as 'Complete'.\n");
+                            }
+                            else
+                            {
+                                Console.WriteLine("\nInvalid selection! Please enter a number.\n");
+                            }
                             break;
                         case 3:
                             myToDos.PrintToDos();
                             Console.WriteLine("\nEnter the number of the task you would like to update:");
-                            currentToDo = Convert.ToInt32(Console.ReadLine()) - 1;
-                            Console.WriteLine("Enter the new task:");
-                            newTask = Console.ReadLine();
-                            myToDos.UpdateTask(newTask, currentToDo);
-                            Console.WriteLine($"\nTask #{currentToDo + 1} updated.\n");
+                            currentInput = Console.ReadLine();
+                            if (int.TryParse(currentInput, out currentToDo))
+                            {
+                                while (CheckRange(myToDos, currentToDo))
+                                {
+                                    currentInput = Console.ReadLine();
+                                    if (int.TryParse(currentInput, out currentToDo))
+                                    {
+                                        CheckRange(myToDos, currentToDo);
+                                    }
+                                    else
+                                    {
+                                        Console.WriteLine("\nInvalid selection! Please enter a number.\n");
+                                    }
+                                }
+                                Console.WriteLine("Enter the new task:");
+                                newTask = Console.ReadLine();
+                                myToDos.UpdateTask(newTask, currentToDo - 1);
+                                Console.WriteLine($"\nTask #{currentToDo} updated.\n");
+                            }
+                            else
+                            {
+                                Console.WriteLine("\nInvalid selection! Please enter a number.\n");
+                            }
                             break;
                         case 4:
                             myToDos.PrintToDos();
@@ -61,9 +100,28 @@ namespace dotnet_todo
                         case 5:
                             myToDos.PrintToDos();
                             Console.WriteLine("\nEnter the number of the task you would like to delete:");
-                            currentToDo = Convert.ToInt32(Console.ReadLine()) - 1;
-                            myToDos.RemoveToDo(currentToDo);
-                            Console.WriteLine($"\nTask #{currentToDo + 1} deleted.\n");
+                            currentInput = Console.ReadLine();
+                            if (int.TryParse(currentInput, out currentToDo))
+                            {
+                                while (CheckRange(myToDos, currentToDo))
+                                {
+                                    currentInput = Console.ReadLine();
+                                    if (int.TryParse(currentInput, out currentToDo))
+                                    {
+                                        CheckRange(myToDos, currentToDo);
+                                    }
+                                    else
+                                    {
+                                        Console.WriteLine("\nInvalid selection! Please enter a number.\n");
+                                    }
+                                }
+                                myToDos.RemoveToDo(currentToDo - 1);
+                                Console.WriteLine($"\nTask #{currentToDo} deleted.\n");
+                            }
+                            else
+                            {
+                                Console.WriteLine("\nInvalid selection! Please enter a number.\n");
+                            }
                             break;
                         case 6:
                             Console.WriteLine("\nGood bye!\n");
@@ -73,13 +131,24 @@ namespace dotnet_todo
                             break;
                     }
                 }
-                else{
+                else
+                {
                     Console.WriteLine("\nInvalid selection! Please enter a number.\n");
                 }
 
             }
             while (selection != 6);
 
+        }
+
+        static bool CheckRange(ToDoList list, int index)
+        {
+            if (index < 1 || index > list.Count())
+            {
+                Console.WriteLine($"\nInvalid selection. Select a number between 1 and {list.Count()}.");
+                return true;
+            }
+            return false;
         }
     }
 }

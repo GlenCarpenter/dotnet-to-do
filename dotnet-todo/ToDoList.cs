@@ -46,5 +46,11 @@ namespace dotnet_todo
                 Console.WriteLine($"Status: {status}\n");
             }
         }
+
+        // Returns count of items
+        public int Count()
+        {
+            return toDos.Count;
+        }
     }
 }

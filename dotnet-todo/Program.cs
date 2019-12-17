@@ -46,18 +46,10 @@ namespace dotnet_todo
                             currentInput = Console.ReadLine();
                             if (int.TryParse(currentInput, out currentToDo))
                             {
-                                while (CheckRange(myToDos, currentToDo))
-                                {
-                                    currentInput = Console.ReadLine();
-                                    if (int.TryParse(currentInput, out currentToDo))
-                                    {
-                                        CheckRange(myToDos, currentToDo);
-                                    }
-                                    else
-                                    {
-                                        Console.WriteLine("\nInvalid selection! Please enter a number.\n");
-                                    }
-                                }
+                                ValidateInput(myToDos, currentInput, ref currentToDo);
+                                Console.WriteLine($"currentInput is {currentInput}");
+                                Console.WriteLine(currentToDo);
+
                                 myToDos.CompleteToDo(currentToDo - 1);
                                 Console.WriteLine($"\nTask #{currentToDo} marked as 'Complete'.\n");
                             }
@@ -72,18 +64,7 @@ namespace dotnet_todo
                             currentInput = Console.ReadLine();
                             if (int.TryParse(currentInput, out currentToDo))
                             {
-                                while (CheckRange(myToDos, currentToDo))
-                                {
-                                    currentInput = Console.ReadLine();
-                                    if (int.TryParse(currentInput, out currentToDo))
-                                    {
-                                        CheckRange(myToDos, currentToDo);
-                                    }
-                                    else
-                                    {
-                                        Console.WriteLine("\nInvalid selection! Please enter a number.\n");
-                                    }
-                                }
+                                ValidateInput(myToDos, currentInput, ref currentToDo);
                                 Console.WriteLine("Enter the new task:");
                                 newTask = Console.ReadLine();
                                 myToDos.UpdateTask(newTask, currentToDo - 1);
@@ -103,18 +84,7 @@ namespace dotnet_todo
                             currentInput = Console.ReadLine();
                             if (int.TryParse(currentInput, out currentToDo))
                             {
-                                while (CheckRange(myToDos, currentToDo))
-                                {
-                                    currentInput = Console.ReadLine();
-                                    if (int.TryParse(currentInput, out currentToDo))
-                                    {
-                                        CheckRange(myToDos, currentToDo);
-                                    }
-                                    else
-                                    {
-                                        Console.WriteLine("\nInvalid selection! Please enter a number.\n");
-                                    }
-                                }
+                                ValidateInput(myToDos, currentInput, ref currentToDo);
                                 myToDos.RemoveToDo(currentToDo - 1);
                                 Console.WriteLine($"\nTask #{currentToDo} deleted.\n");
                             }
@@ -149,6 +119,22 @@ namespace dotnet_todo
                 return true;
             }
             return false;
+        }
+
+        static void ValidateInput(ToDoList list, String input, ref int index)
+        {
+            while (CheckRange(list, index))
+            {
+                input = Console.ReadLine();
+                if (int.TryParse(input, out index))
+                {
+                    CheckRange(list, index);
+                }
+                else
+                {
+                    Console.WriteLine("\nInvalid selection! Please enter a number.\n");
+                }
+            }
         }
     }
 }
